@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Palette de couleurs */
 @layer base {
     :root {
       --color-primary: #547792;
@@ -10,6 +11,39 @@
       --color-bg-light: #EAE0CF;
       --color-dark: #1A1A1A;
       --color-light: #F8F8F5;
+    }
+  }
+  
+  /* Styles espacement de base */
+  @layer components {
+    .section {
+      @apply px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20;
+    }
+  }
+
+  /* Styles background */
+  @layer components {
+    .section-light {
+      @apply bg-backgroundLight text-dark;
+    }
+  
+    .section-dark {
+      @apply bg-dark text-light;
+    }
+  }
+  
+  /* Styles titres */
+  @layer components {
+    .heading-xl {
+      @apply text-4xl md:text-5xl lg:text-6xl font-semibold;
+    }
+  
+    .heading-lg {
+      @apply text-3xl md:text-4xl font-semibold;
+    }
+  
+    .text-lead {
+      @apply text-lg md:text-xl text-secondary;
     }
   }
   
