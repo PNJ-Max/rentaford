@@ -1,0 +1,28 @@
+<section
+  class="relative h-[200vh]"
+  appScrollProgress
+  [sceneVh]="2"
+  (progressChange)="onProgress($event)"
+>
+  <div
+    class="sticky top-0 h-screen flex items-center"
+    [style.opacity]="1 - progress"
+    [style.transform]="'scale(' + (1 + progress * 0.06) + ')'"
+  >
+    <div class="absolute inset-0 hero-bg"></div>
+    <div class="absolute inset-0 bg-black/80"></div>
+
+    <div class="relative z-10 section w-full">
+      <div class="max-w-4xl text-light">
+        <h1 class="heading-xl mb-6">
+          Une Ford Mustang pour
+          <span class="text-primary">un mariage inoubliable</span>
+        </h1>
+        <p class="text-lead mb-8 max-w-xl">
+          Scrollytelling POC — progress: {{ progress | number:'1.2-2' }}
+        </p>
+        <button class="btn-primary">Réserver</button>
+      </div>
+    </div>
+  </div>
+</section>

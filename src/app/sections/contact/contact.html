@@ -1,0 +1,174 @@
+<section id="contact" class="contact-section">
+  <div class="contact-container">
+    
+    <!-- Titre et intro -->
+    <div class="contact-header">
+      <h2 class="contact-title">Contactez-nous</h2>
+      <p class="contact-subtitle">
+        Remplissez le formulaire ci-dessous et nous vous recontacterons rapidement
+        pour discuter de votre événement.
+      </p>
+    </div>
+
+    <!-- Formulaire -->
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+      
+      <!-- Nom et Email -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name" class="form-label">
+            Nom complet <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="name"
+            formControlName="name"
+            class="form-input"
+            [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched"
+            placeholder="Votre nom"
+            aria-describedby="name-error"
+          />
+          @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+            <span id="name-error" class="form-error">
+              {{ getErrorMessage('name') }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">
+            Email <span class="required">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            class="form-input"
+            [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched"
+            placeholder="votre@email.com"
+            aria-describedby="email-error"
+          />
+          @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+            <span id="email-error" class="form-error">
+              {{ getErrorMessage('email') }}
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Téléphone et Date -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone" class="form-label">
+            Téléphone <span class="required">*</span>
+          </label>
+          <input
+            type="tel"
+            id="phone"
+            formControlName="phone"
+            class="form-input"
+            [class.error]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched"
+            placeholder="+32 ..."
+            aria-describedby="phone-error"
+          />
+          @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+            <span id="phone-error" class="form-error">
+              {{ getErrorMessage('phone') }}
+            </span>
+          }
+        </div>
+
+        <div class="form-group">
+          <label for="eventDate" class="form-label">
+            Date de l'événement <span class="required">*</span>
+          </label>
+          <input
+            type="date"
+            id="eventDate"
+            formControlName="eventDate"
+            class="form-input"
+            [class.error]="contactForm.get('eventDate')?.invalid && contactForm.get('eventDate')?.touched"
+            aria-describedby="eventDate-error"
+          />
+          @if (contactForm.get('eventDate')?.invalid && contactForm.get('eventDate')?.touched) {
+            <span id="eventDate-error" class="form-error">
+              {{ getErrorMessage('eventDate') }}
+            </span>
+          }
+        </div>
+      </div>
+
+      <!-- Durée -->
+      <div class="form-group">
+        <label for="duration" class="form-label">
+          Durée souhaitée <span class="required">*</span>
+        </label>
+        <select
+          id="duration"
+          formControlName="duration"
+          class="form-input"
+          [class.error]="contactForm.get('duration')?.invalid && contactForm.get('duration')?.touched"
+          aria-describedby="duration-error"
+        >
+          <option value="">Sélectionnez une durée</option>
+          <option value="2h">2 heures</option>
+          <option value="half-day">Demi-journée (4h)</option>
+          <option value="full-day">Journée complète (8h)</option>
+        </select>
+        @if (contactForm.get('duration')?.invalid && contactForm.get('duration')?.touched) {
+          <span id="duration-error" class="form-error">
+            {{ getErrorMessage('duration') }}
+          </span>
+        }
+      </div>
+
+      <!-- Message -->
+      <div class="form-group">
+        <label for="message" class="form-label">
+          Message <span class="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          formControlName="message"
+          class="form-input form-textarea"
+          [class.error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched"
+          placeholder="Décrivez votre événement et vos besoins..."
+          rows="5"
+          aria-describedby="message-error"
+        ></textarea>
+        @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+          <span id="message-error" class="form-error">
+            {{ getErrorMessage('message') }}
+          </span>
+        }
+      </div>
+
+      <!-- Message de succès -->
+      @if (submitSuccess()) {
+        <div class="form-success" role="alert">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="success-icon">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+          </svg>
+          <span>Votre message a été envoyé avec succès ! Nous vous recontacterons rapidement.</span>
+        </div>
+      }
+
+      <!-- Bouton submit -->
+      <button
+        type="submit"
+        class="form-submit"
+        [disabled]="isSubmitting()"
+        [class.loading]="isSubmitting()"
+      >
+        @if (isSubmitting()) {
+          <span>Envoi en cours...</span>
+        } @else {
+          <span>Envoyer la demande</span>
+        }
+      </button>
+
+    </form>
+
+  </div>
+</section>
+

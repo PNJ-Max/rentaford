@@ -1,0 +1,85 @@
+<section class="section section-white">
+  <div class="max-w-7xl mx-auto">
+    
+    <!-- Titre et intro -->
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="heading-lg mb-4">
+        Nos offres
+      </h2>
+      <p class="text-lead max-w-2xl mx-auto">
+        Choisissez la formule qui correspond à votre événement
+      </p>
+    </div>
+
+    <!-- Sélecteur d'offres (mobile) -->
+    <div class="offer-selector-mobile mb-8 md:hidden">
+      <select 
+        [value]="selectedOffer()" 
+        (change)="selectOffer($any($event.target).value)"
+        class="offer-select"
+      >
+        @for (offer of offers; track offer.id) {
+          <option [value]="offer.id">{{ offer.title }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Onglets (desktop) -->
+    <div class="offer-tabs hidden md:flex justify-center gap-4 mb-12">
+      @for (offer of offers; track offer.id) {
+        <button
+          type="button"
+          [class.active]="selectedOffer() === offer.id"
+          (click)="selectOffer(offer.id)"
+          class="offer-tab"
+        >
+          <span class="offer-tab-duration">{{ offer.duration }}</span>
+          <span class="offer-tab-title">{{ offer.title }}</span>
+          @if (offer.popular) {
+            <span class="offer-badge">Populaire</span>
+          }
+        </button>
+      }
+    </div>
+
+    <!-- Contenu de l'offre sélectionnée -->
+    @if (getSelectedOffer(); as offer) {
+      <div class="offer-card" [class.popular]="offer.popular">
+        @if (offer.popular) {
+          <div class="offer-popular-badge">Le plus populaire</div>
+        }
+        
+        <div class="offer-header">
+          <div>
+            <h3 class="offer-title">{{ offer.title }}</h3>
+            <p class="offer-description">{{ offer.description }}</p>
+          </div>
+          <div class="offer-price">
+            <span class="offer-price-amount">{{ offer.price }}€</span>
+            <span class="offer-price-label">par événement</span>
+          </div>
+        </div>
+
+        <div class="offer-features">
+          <h4 class="offer-features-title">Ce qui est inclus :</h4>
+          <ul class="offer-features-list">
+            @for (feature of offer.features; track feature) {
+              <li class="offer-feature-item">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="offer-feature-icon">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                </svg>
+                <span>{{ feature }}</span>
+              </li>
+            }
+          </ul>
+        </div>
+
+        <button class="btn-primary offer-cta">
+          Demander un devis
+        </button>
+      </div>
+    }
+
+  </div>
+</section>
+  
