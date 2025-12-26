@@ -2,14 +2,418 @@
 @tailwind components;
 @tailwind utilities;
 
+/**
+ * Global Styles
+ * Design System for Angular 21 + Tailwind 3
+ */
+
+/* ============================================
+   Base Layer - CSS Variables & Reset
+   ============================================ */
 @layer base {
-    :root {
-      --color-primary: #547792;
-      --color-secondary: #94B4C1;
-      --color-accent-deep: #213448;
-      --color-bg-light: #EAE0CF;
-      --color-dark: #1A1A1A;
-      --color-light: #F8F8F5;
+  :root {
+    /* Color Palette */
+    --color-primary: #547792;
+    --color-secondary: #94B4C1;
+    --color-accent-deep: #213448;
+    --color-bg-light: #EAE0CF;
+    --color-dark: #1A1A1A;
+    --color-light: #F8F8F5;
+
+    --color-primary-soft: rgba(84, 119, 146, 0.12);
+    --color-primary-border: rgba(84, 119, 146, 0.2);
+
+    /* Typography - Font Families */
+    --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+    --font-serif: 'Lora', Georgia, serif;
+
+    /* Typography - Font Sizes (Mobile First - Base 16px) */
+    --text-xs: 0.75rem;      /* 12px */
+    --text-sm: 0.875rem;     /* 14px */
+    --text-base: 1rem;       /* 16px */
+    --text-lg: 1.125rem;     /* 18px */
+    --text-xl: 1.25rem;      /* 20px */
+    --text-2xl: 1.5rem;      /* 24px */
+    --text-3xl: 1.875rem;    /* 30px */
+    --text-4xl: 2.25rem;     /* 36px */
+    --text-5xl: 3rem;        /* 48px */
+    --text-6xl: 3.75rem;     /* 60px */
+
+    /* Typography - Line Heights (Optimal for readability) */
+    --leading-tight: 1.2;
+    --leading-snug: 1.375;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.625;
+    --leading-loose: 1.75;
+
+    /* Typography - Letter Spacing */
+    --tracking-tighter: -0.02em;
+    --tracking-tight: -0.01em;
+    --tracking-normal: 0;
+    --tracking-wide: 0.025em;
+    --tracking-wider: 0.05em;
+    --tracking-widest: 0.1em;
+
+    /* Typography - Font Weights */
+    --font-light: 300;
+    --font-normal: 400;
+    --font-medium: 500;
+    --font-semibold: 600;
+    --font-bold: 700;
+  }
+
+  /* Base Typography Reset */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html {
+    font-size: 16px; /* Base font size for rem calculations */
+  }
+
+  body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    color: var(--color-dark);
+    letter-spacing: var(--tracking-normal);
+    font-weight: var(--font-normal);
+  }
+
+  /* Native HTML Elements Typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-dark);
+    margin: 0;
+  }
+
+  h1 {
+    font-size: var(--text-4xl);
+    font-weight: var(--font-semibold);
+  }
+
+  h2 {
+    font-size: var(--text-3xl);
+    font-weight: var(--font-semibold);
+  }
+
+  h3 {
+    font-size: var(--text-2xl);
+    font-weight: var(--font-semibold);
+  }
+
+  h4 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+  }
+
+  h5 {
+    font-size: var(--text-lg);
+    font-weight: var(--font-medium);
+  }
+
+  h6 {
+    font-size: var(--text-base);
+    font-weight: var(--font-medium);
+  }
+
+  p {
+    font-size: var(--text-base);
+    line-height: var(--leading-relaxed);
+    margin: 0;
+  }
+
+  small {
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+  }
+
+  /* Responsive Typography - Desktop */
+  @media (min-width: 768px) {
+    html {
+      font-size: 17px;
+    }
+
+    h1 {
+      font-size: var(--text-5xl);
+    }
+
+    h2 {
+      font-size: var(--text-4xl);
+    }
+
+    h3 {
+      font-size: var(--text-3xl);
+    }
+
+    h4 {
+      font-size: var(--text-2xl);
+    }
+
+    p {
+      font-size: var(--text-lg);
     }
   }
+
+  @media (min-width: 1024px) {
+    html {
+      font-size: 18px;
+    }
+
+    h1 {
+      font-size: var(--text-6xl);
+    }
+  }
+}
+
+/* ============================================
+   Components Layer - Reusable Classes
+   ============================================ */
+@layer components {
+  /* ============================================
+     Typography System - Uniform & Responsive
+     ============================================ */
+
+  /* Headings - Hero & Section Titles */
+  .heading-xl {
+    font-family: var(--font-serif);
+    font-size: var(--text-4xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-dark);
+  }
+
+  @media (min-width: 768px) {
+    .heading-xl {
+      font-size: var(--text-5xl);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .heading-xl {
+      font-size: var(--text-6xl);
+    }
+  }
+
+  .heading-lg {
+    font-family: var(--font-serif);
+    font-size: var(--text-3xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tighter);
+    color: var(--color-dark);
+  }
+
+  @media (min-width: 768px) {
+    .heading-lg {
+      font-size: var(--text-4xl);
+    }
+  }
+
+  .heading-md {
+    font-family: var(--font-serif);
+    font-size: var(--text-2xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-dark);
+  }
+
+  @media (min-width: 768px) {
+    .heading-md {
+      font-size: var(--text-3xl);
+    }
+  }
+
+  .heading-sm {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-dark);
+  }
+
+  @media (min-width: 768px) {
+    .heading-sm {
+      font-size: var(--text-2xl);
+    }
+  }
+
+  /* Body Text - Lead (Large intro text) */
+  .text-lead {
+    font-family: var(--font-sans);
+    font-size: var(--text-lg);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .text-lead {
+      font-size: var(--text-xl);
+    }
+  }
+
+  /* Body Text - Base (Standard paragraph) */
+  .text-body {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-dark);
+  }
+
+  @media (min-width: 768px) {
+    .text-body {
+      font-size: var(--text-lg);
+    }
+  }
+
+  /* Body Text - Small (Captions, metadata) */
+  .text-small {
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-secondary);
+  }
+
+  /* Body Text - Extra Small (Labels, badges) */
+  .text-xs {
+    font-family: var(--font-sans);
+    font-size: var(--text-xs);
+    font-weight: var(--font-medium);
+    line-height: var(--leading-normal);
+    letter-spacing: var(--tracking-wide);
+    text-transform: uppercase;
+  }
+
+  /* Utility Classes for Text Colors */
+  .text-primary {
+    color: var(--color-primary);
+  }
+
+  .text-secondary {
+    color: var(--color-secondary);
+  }
+
+  .text-dark {
+    color: var(--color-dark);
+  }
+
+  .text-light {
+    color: var(--color-light);
+  }
+
+  /* Utility Classes for Text Alignment */
+  .text-center {
+    text-align: center;
+  }
+
+  .text-left {
+    text-align: left;
+  }
+
+  .text-right {
+    text-align: right;
+  }
+
+  /* Section Layouts */
+  .section {
+    @apply px-6 py-12 md:px-12 md:py-16 lg:px-24 lg:py-20;
+  }
+
+  .section-light {
+    background-color: var(--color-bg-light);
+    color: var(--color-dark);
+  }
+
+  .section-white {
+    background-color: #ffffff;
+    color: var(--color-dark);
+  }
   
+  
+
+  .section-dark {
+    @apply bg-dark text-light;
+  }
+
+  /* Button Components */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all duration-200;
+  }
+
+  .btn-primary {
+    @apply btn bg-primary text-light px-5 py-3 hover:bg-secondary hover:shadow-lg;
+  }
+
+  .btn-secondary {
+    @apply btn border border-white/20 text-light px-5 py-3 hover:bg-light hover:text-dark;
+  }
+
+  .btn-dark {
+    @apply btn bg-dark text-light px-5 py-3 hover:bg-dark/90;
+  }
+
+  .feature-card {
+    @apply relative rounded-2xl p-8 text-center transition-all duration-500 ease-out;
+    @apply hover:shadow-2xl hover:-translate-y-2 hover:scale-[1.02];
+    @apply overflow-hidden;
+  }
+
+  .feature-icon {
+    @apply w-20 h-20 mx-auto mb-6 rounded-2xl;
+    @apply flex items-center justify-center text-primary;
+    @apply bg-primary;
+  }
+
+  .feature-title {
+    font-family: var(--font-serif);
+    font-size: var(--text-xl);
+    font-weight: var(--font-semibold);
+    line-height: var(--leading-snug);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-dark);
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) {
+    .feature-title {
+      font-size: var(--text-2xl);
+    }
+  }
+
+  .feature-description {
+    font-family: var(--font-sans);
+    font-size: var(--text-base);
+    font-weight: var(--font-normal);
+    line-height: var(--leading-relaxed);
+    letter-spacing: var(--tracking-normal);
+    color: var(--color-secondary);
+  }
+
+  @media (min-width: 768px) {
+    .feature-description {
+      font-size: var(--text-lg);
+    }
+  }
+}
+
+.feature-icon {
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary);
+}
+
+.feature-card {
+  border: 1px solid var(--color-primary-border);
+}

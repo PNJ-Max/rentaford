@@ -1,0 +1,120 @@
+<header
+  class="header-container"
+  [class.header-hidden]="hidden()"
+  role="banner"
+  aria-label="Navigation principale"
+>
+  <div class="header-content">
+    <!-- Logo -->
+    <a href="/" class="header-logo" aria-label="Retour à l'accueil">
+      <svg
+        class="header-logo-icon"
+        viewBox="0 0 40 40"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
+        <rect x="0" y="0" width="40" height="40" rx="10" fill="currentColor" />
+        <text
+          x="50%"
+          y="55%"
+          text-anchor="middle"
+          fill="white"
+          font-size="20"
+          font-weight="600"
+          font-family="inherit"
+        >
+          R
+        </text>
+      </svg>
+      <span class="header-logo-text">RentaFord</span>
+    </a>
+
+    <!-- Navigation Desktop -->
+    <nav class="header-nav-desktop" aria-label="Navigation principale">
+      <a 
+        (click)="scrollToSection('services')" 
+        class="header-nav-link"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="scrollToSection('services')"
+      >
+        Services
+      </a>
+      <a 
+        (click)="scrollToSection('contact')" 
+        class="header-nav-link"
+        role="button"
+        tabindex="0"
+        (keydown.enter)="scrollToSection('contact')"
+      >
+        Contact
+      </a>
+    </nav>
+
+    <!-- CTA Desktop -->
+    <button 
+      type="button"
+      class="btn-primary header-cta-desktop"
+      (click)="scrollToSection('contact')"
+      aria-label="Réserver une location"
+    >
+      Réserver
+    </button>
+
+    <!-- Menu Mobile Toggle -->
+    <button
+      type="button"
+      class="header-mobile-toggle"
+      (click)="toggleMobileMenu()"
+      [attr.aria-expanded]="mobileMenuOpen()"
+      aria-label="Ouvrir le menu"
+      aria-controls="mobile-menu"
+    >
+      <span class="sr-only">Menu</span>
+      <svg
+        class="header-menu-icon"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        aria-hidden="true"
+      >
+        @if (!mobileMenuOpen()) {
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        } @else {
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        }
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menu Mobile -->
+  @if (mobileMenuOpen()) {
+    <nav 
+      id="mobile-menu"
+      class="header-nav-mobile"
+      role="navigation"
+      aria-label="Menu mobile"
+    >
+      <a 
+        (click)="scrollToSection('services')" 
+        class="header-nav-mobile-link"
+      >
+        Services
+      </a>
+      <a 
+        (click)="scrollToSection('contact')" 
+        class="header-nav-mobile-link"
+      >
+        Contact
+      </a>
+      <button 
+        type="button"
+        class="btn-primary header-cta-mobile"
+        (click)="scrollToSection('contact')"
+      >
+        Réserver
+      </button>
+    </nav>
+  }
+</header>

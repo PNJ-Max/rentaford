@@ -1,0 +1,127 @@
+/* Hero Background */
+.hero-bg {
+  background-image: url('/images/mustang-hero.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* Overlay pour améliorer la lisibilité */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(26, 26, 26, 0.85) 0%,
+    rgba(26, 26, 26, 0.75) 50%,
+    rgba(26, 26, 26, 0.85) 100%
+  );
+  z-index: 1;
+}
+
+/* Conteneur principal - respecte les normes de largeur max */
+.hero-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-container {
+    padding-left: 3rem;
+    padding-right: 3rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-container {
+    padding-left: 6rem;
+    padding-right: 6rem;
+  }
+}
+
+/* Contenu du hero - largeur optimale pour la lisibilité */
+.hero-content {
+  max-width: 48rem;
+  color: #F8F8F5;
+}
+
+/* Badge */
+.hero-badge {
+  display: inline-block;
+  margin-bottom: 1rem;
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  font-weight: var(--font-medium);
+  letter-spacing: var(--tracking-widest);
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+/* Titre */
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-tight);
+  margin-bottom: 1.5rem;
+  letter-spacing: var(--tracking-tighter);
+  color: var(--color-light);
+}
+
+@media (min-width: 768px) {
+  .hero-title {
+    font-size: var(--text-5xl);
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: var(--text-6xl);
+  }
+}
+
+/* Description */
+.hero-description {
+  font-family: var(--font-sans);
+  font-size: var(--text-lg);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+  margin-bottom: 2.5rem;
+  max-width: 32rem;
+  color: var(--color-secondary);
+}
+
+@media (min-width: 768px) {
+  .hero-description {
+    font-size: var(--text-xl);
+  }
+}
+
+/* Actions (boutons) */
+.hero-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .hero-actions {
+    flex-direction: row;
+  }
+}
+
+/* Optimisation pour mobile */
+@media (max-width: 768px) {
+  .hero-bg {
+    background-attachment: scroll;
+  }
+}
+  
