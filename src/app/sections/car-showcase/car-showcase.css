@@ -9,6 +9,10 @@
 .timeline-wrapper {
   position: relative;
   width: 100%;
+  height: 250px;
+  padding: 4rem 0;
+  display: flex;
+  align-items: center;
 }
 
 .timeline-line {
@@ -39,28 +43,50 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-  padding: 2rem 0;
+  gap: 1rem;
+  width: 100%;
+  height: 100%;
 }
 
 .timeline-item {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   gap: 1.5rem;
+  position: relative;
   flex: 1;
   max-width: 200px;
+  height: 100%;
 }
 
 .timeline-point {
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
   border-radius: 50%;
   background: #F8F8F5;
   border: 3px solid #1A1A1A;
-  box-shadow: 0 0 0 6px rgba(248, 248, 245, 0.15),
-              0 0 20px rgba(248, 248, 245, 0.1);
+  box-shadow: 0 0 0 4px rgba(248, 248, 245, 0.2),
+              0 0 15px rgba(248, 248, 245, 0.3);
   transition: all 0.3s ease;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  flex-shrink: 0;
+  display: block;
+}
+
+.timeline-label {
+  position: absolute;
+  top: calc(50% + 1.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 3;
+  width: 100%;
+  text-align: center;
+  padding: 0 0.5rem;
 }
 
 .timeline-item:hover .timeline-point {
@@ -76,8 +102,11 @@
   line-height: var(--leading-relaxed);
   letter-spacing: var(--tracking-wide);
   text-align: center;
-  color: var(--color-light);
+  color: #F8F8F5;
   transition: color 0.3s ease;
+  position: relative;
+  z-index: 3;
+  display: block;
 }
 
 @media (min-width: 768px) {
@@ -102,13 +131,19 @@
     background-attachment: scroll;
   }
 
+  .timeline-wrapper {
+    padding: 2rem 0;
+    height: auto;
+    min-height: auto;
+  }
+
   .timeline-line {
-    left: 50%;
+    left: 0;
     top: 0;
     bottom: 0;
     width: 2px;
     height: 100%;
-    transform: translateX(-50%);
+    transform: none;
     background: linear-gradient(
       to bottom,
       transparent 0%,
@@ -123,8 +158,9 @@
 
   .timeline-items {
     flex-direction: column;
-    gap: 3rem;
-    padding: 3rem 0;
+    gap: 2rem;
+    height: auto;
+    align-items: flex-start;
   }
 
   .timeline-item {
@@ -132,12 +168,33 @@
     width: 100%;
     max-width: none;
     justify-content: flex-start;
+    align-items: center;
     gap: 1.5rem;
+    padding-left: 0;
+    height: auto;
+    position: relative;
+  }
+
+  .timeline-point {
+    position: absolute;
+    left: -7px; /* Centre le point de 16px sur la ligne de 2px (centre de la ligne à 1px, donc 1px - 8px = -7px) */
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+    flex-shrink: 0;
+    z-index: 3;
   }
 
   .timeline-label {
+    position: static;
+    transform: none;
+    left: auto;
+    top: auto;
     text-align: left;
     font-size: var(--text-lg);
+    color: #F8F8F5;
+    width: auto;
+    margin-left: 1.5rem; /* Espace après le point */
   }
 
   @media (min-width: 640px) {
