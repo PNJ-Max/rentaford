@@ -5,6 +5,7 @@ import { Footer } from '../../shared/footer/footer';
 import { WhyUs } from '../../shared/why-us/why-us';
 import { ServicePresentation } from '../../sections/service-presentation/service-presentation';
 import { CarShowcase } from '../../sections/car-showcase/car-showcase';
+import { Gallery } from '../../sections/gallery/gallery';
 import { Offer } from '../../sections/offer/offer';
 import { Contact } from '../../sections/contact/contact';
 
@@ -18,6 +19,7 @@ import { Contact } from '../../sections/contact/contact';
     WhyUs,
     ServicePresentation,
     CarShowcase,
+    Gallery,
     Offer,
     Contact
   ],
